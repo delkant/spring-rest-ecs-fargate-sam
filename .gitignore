@@ -112,5 +112,7 @@ fabric.properties
 ## ignoring target file
 target/
 
-
+# General Mac
+.DS_Store
+*.DS_Store
 # End of https://mrkandreev.name/snippets/gitignore-generator/#Java,Maven,Intellij,Java-Web,spring

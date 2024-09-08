@@ -82,7 +82,10 @@ This sample project deploys a Java 21 Spring Boot application on Amazon ECS usin
 
 This sample project deploys a Java 21 Spring Boot application on Amazon ECS Fargate with Application Load Balancer to route traffic between two ECS Tasks. The application exposed REST APIs which can be accessed over HTTP.
 
-Please refer to the architecture diagram below:
+Overview Architecture:
+![Overview](images/overview.png)
+
+ECS Architecture zoom in diagram below:
 
 ![End to End Architecture](images/architecture.png)
 
