@@ -26,8 +26,14 @@ This sample project deploys a Java 21 Spring Boot application on Amazon ECS usin
    ```bash
       mvn spring-boot:run
    ```
+3. Get the right settings in place:
+   - Set your AWS account # here
+     - [config.txt](infra/config.txt)
+   ```properties
+    aws_account=YOUR AWS ACCOUNT
+   ```
 
-3. Please *ensure* that docker is up and running before executing this step. From the command line, run the below command 
+4. Please *ensure* that docker is up and running before executing this step. From the command line, run the below command 
    - to create ECR repository, build [the docker image](infra/Dockerfile) and push it into the ECR repository.
 
    - and also to create common cloudformation stacks: 
@@ -38,7 +44,7 @@ This sample project deploys a Java 21 Spring Boot application on Amazon ECS usin
    ```bash
       bash build.sh
    ```
-   if you get this error: 
+   if you get this error (can happen w/ Apple M1-M3): 
    ``` 
     ERROR: Multi-platform build is not supported for the docker driver.
     Switch to a different driver, or turn on the containerd image store, and try again.
@@ -50,16 +56,17 @@ This sample project deploys a Java 21 Spring Boot application on Amazon ECS usin
     docker buildx create --name multiarch --driver docker-container --use
    ```
 
-4. Run the below command to deploy the AWS resources for the pattern as specified in the template.yml file:
+5. Run the below command to deploy the AWS resources for the pattern as specified in the template.yml file:
    ```bash
       sam deploy --guided
    ```
-or just...
+   or just...
    ```bash
       ./deploy.sh
    ```
-
-5. During the prompts:
+   After the first run SAM will save your preferences in a .toml file by default with the name samconfig.toml
+  
+6. During the prompts:
 
    - Enter a stack name
    - Enter the same as AWS Region that you provided while building the image. 
@@ -69,8 +76,8 @@ or just...
 
    If you have run `sam deploy --guided` mode once and saved arguments to a configuration file (samconfig.toml), you can use `sam deploy` in future to use these defaults.
 
-5. Note the outputs from the SAM deployment process. These contain the resource names and/or ARNs which are used for next step as well as testing.
-
+7. Note the outputs from the SAM deployment process. These contain the resource names and/or ARNs which are used for next step as well as testing.
+   ([More about SAM config file here](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-config.html))
 ## How it works
 
 This sample project deploys a Java 21 Spring Boot application on Amazon ECS Fargate with Application Load Balancer to route traffic between two ECS Tasks. The application exposed REST APIs which can be accessed over HTTP.
