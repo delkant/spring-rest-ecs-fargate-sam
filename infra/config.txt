@@ -1,0 +1,4 @@
+image_name=rest-api-image
+repo_name=rest-service-repo
+aws_account=
+aws_region=us-east-1
